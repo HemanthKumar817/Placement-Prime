@@ -1,0 +1,5 @@
+{
+  "name": "Background Beams Demo",
+  "description": "A demo of the Background Beams component integrated with Shadcn UI components using React, TypeScript, and Tailwind CSS.",
+  "requestFramePermissions": []
+}
