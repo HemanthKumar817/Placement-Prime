@@ -27,6 +27,28 @@
         --input: 240 5.9% 90%;
         --ring: 240 5.9% 10%;
         --radius: 0.5rem;
+
+        /* New variables for Modal/Material components */
+        --context-card-border: hsla(0, 0%, 92%, 1);
+        --ds-gray-1000: hsla(0, 0%, 9%, 1);
+        --ds-gray-alpha-400: hsla(0, 0%, 0%, 0.08);
+        --ds-background-200: hsla(0, 0%, 98%, 1);
+        --ds-background-200-alpha-800: hsla(0, 0%, 98%, 0.8);
+        --accents-1: #fafafa;
+        --accents-2: #eaeaea;
+        --ds-background-100: hsla(0, 0%, 100%, 1);
+        --ds-overlay: rgba(0, 0, 0, .4);
+        --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
+        --ds-shadow-small: 0px 2px 2px rgba(0, 0, 0, 0.04);
+        --ds-shadow-border-small: var(--ds-shadow-border), var(--ds-shadow-small);
+        --ds-shadow-medium: 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 8px -8px rgba(0, 0, 0, 0.04);
+        --ds-shadow-border-medium: var(--ds-shadow-border), var(--ds-shadow-medium);
+        --ds-shadow-large: 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.04);
+        --ds-shadow-border-large: var(--ds-shadow-border), var(--ds-shadow-large);
+        --ds-shadow-tooltip: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 4px 8px rgba(0, 0, 0, 0.04);
+        --ds-shadow-menu: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 4px 8px -4px rgba(0, 0, 0, 0.04), 0px 16px 24px -8px rgba(0, 0, 0, 0.06);
+        --ds-shadow-modal: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04), 0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+        --ds-shadow-fullscreen: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04), 0px 24px 32px -8px rgba(0, 0, 0, 0.06);
       }
  
       .dark {
@@ -49,12 +71,98 @@
         --border: 240 3.7% 15.9%;
         --input: 240 3.7% 15.9%;
         --ring: 240 4.9% 83.9%;
+
+        /* New variables for Modal/Material components (Dark Mode) */
+        --context-card-border: hsla(0, 0%, 18%, 1);
+        --ds-gray-1000: hsla(0, 0%, 93%, 1);
+        --ds-gray-alpha-400: hsla(0, 0%, 100%, 0.14);
+        --ds-background-200: hsla(0, 0%, 0%, 1);
+        --ds-background-200-alpha-800: hsla(0, 0%, 0%, 0.8);
+        --accents-2: #333333;
+        --accents-1: #111111;
+        --ds-background-100: hsla(0, 0%, 4%, 1);
+        --ds-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.145);
+        --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.16);
+        --ds-shadow-border-small: var(--ds-shadow-border), 0px 1px 2px rgba(0, 0, 0, 0.16);
+        --ds-shadow-medium: 0px 2px 2px rgba(0, 0, 0, 0.32), 0px 8px 8px -8px rgba(0, 0, 0, 0.16);
+        --ds-shadow-border-medium: var(--ds-shadow-border), 0px 2px 2px rgba(0, 0, 0, 0.32), 0px 8px 8px -8px rgba(0, 0, 0, 0.16);
+        --ds-shadow-large: 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.04);
+        --ds-shadow-border-large: var(--ds-shadow-border), 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.04);
+        --ds-shadow-tooltip: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 4px 8px rgba(0, 0, 0, 0.04);
+        --ds-shadow-menu: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 4px 8px -4px rgba(0, 0, 0, 0.04), 0px 16px 24px -8px rgba(0, 0, 0, 0.06);
+        --ds-shadow-modal: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04), 0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+        --ds-shadow-fullscreen: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04), 0px 24px 32px -8px rgba(0, 0, 0, 0.06);
       }
 
       body {
         font-family: 'Inter', sans-serif;
         background-color: hsl(var(--background));
         color: hsl(var(--foreground));
+        overflow-x: hidden;
+      }
+
+      /* Custom Animation Utilities */
+      .animate-delay-100 { animation-delay: 100ms; }
+      .animate-delay-200 { animation-delay: 200ms; }
+      .animate-delay-300 { animation-delay: 300ms; }
+      .animate-delay-400 { animation-delay: 400ms; }
+      .animate-delay-500 { animation-delay: 500ms; }
+      .animate-delay-600 { animation-delay: 600ms; }
+      .animate-delay-700 { animation-delay: 700ms; }
+      .animate-delay-800 { animation-delay: 800ms; }
+      .animate-delay-900 { animation-delay: 900ms; }
+      .animate-delay-1000 { animation-delay: 1000ms; }
+      .animate-delay-1200 { animation-delay: 1200ms; }
+      .animate-delay-1400 { animation-delay: 1400ms; }
+
+      .animate-element, .animate-slide-right, .animate-testimonial {
+        opacity: 0; /* Start hidden */
+        animation-fill-mode: forwards;
+      }
+
+      /* Checkbox Styles */
+      .custom-checkbox {
+        appearance: none;
+        background-color: transparent;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: 1px solid currentColor;
+        border-radius: 0.15em;
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+      }
+      .custom-checkbox::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--primary);
+        background-color: hsl(var(--primary));
+        transform-origin: center;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      }
+      .custom-checkbox:checked::before {
+        transform: scale(1);
+      }
+      
+      /* Additional theme overrides */
+      @layer theme {
+        :root {
+          --color-context-card-border: var(--context-card-border);
+          --color-gray-1000: var(--ds-gray-1000);
+          --color-gray-alpha-400: var(--ds-gray-alpha-400);
+          --color-background-100: var(--ds-background-100);
+          --color-background-200: var(--ds-background-200);
+          --color-background-200-alpha-800: var(--ds-background-200-alpha-800);
+          --color-accents-1: var(--accents-1);
+          --color-accents-2: var(--accents-2);
+          --color-overlay: var(--ds-overlay);
+        }
       }
     </style>
     <script>
@@ -103,12 +211,53 @@
                 DEFAULT: "hsl(var(--card))",
                 foreground: "hsl(var(--card-foreground))",
               },
+              // Extended for Modal
+              "background-100": "var(--ds-background-100)",
+              "background-200": "var(--ds-background-200)",
+              "background-200-alpha-800": "var(--ds-background-200-alpha-800)",
+              "gray-1000": "var(--ds-gray-1000)",
+              "gray-alpha-400": "var(--ds-gray-alpha-400)",
+              "accents-1": "var(--accents-1)",
+              "accents-2": "var(--accents-2)",
+              "overlay": "var(--ds-overlay)",
             },
             borderRadius: {
               lg: "var(--radius)",
               md: "calc(var(--radius) - 2px)",
               sm: "calc(var(--radius) - 4px)",
             },
+            boxShadow: {
+               "border": "var(--ds-shadow-border)",
+               "border-small": "var(--ds-shadow-border-small)",
+               "border-medium": "var(--ds-shadow-border-medium)",
+               "border-large": "var(--ds-shadow-border-large)",
+               "modal": "var(--ds-shadow-modal)",
+               "menu": "var(--ds-shadow-menu)",
+            },
+            keyframes: {
+              fadeSlideIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)', filter: 'blur(4px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+              },
+              slideRightIn: {
+                '0%': { opacity: '0', transform: 'translateX(-20px)', filter: 'blur(4px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)', filter: 'blur(0)' },
+              },
+              testimonialIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px) scale(0.95)', filter: 'blur(4px)' },
+                '100%': { opacity: '1', transform: 'translateY(0) scale(1)', filter: 'blur(0)' },
+              },
+              "fade-spin": {
+                "0%": { opacity: "1" },
+                "100%": { opacity: "0.15" }
+              }
+            },
+            animation: {
+              'element': 'fadeSlideIn 0.8s ease-out forwards',
+              'slide-right': 'slideRightIn 1s ease-out forwards',
+              'testimonial': 'testimonialIn 0.6s ease-out forwards',
+              "fade-spin": "fade-spin 1.2s linear infinite"
+            }
           },
         },
       }
@@ -117,12 +266,20 @@
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "clsx": "https://esm.sh/clsx@^2.1.1",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
-    "tailwind-merge": "https://esm.sh/tailwind-merge@^3.4.0"
+    "react": "https://esm.sh/react@18.3.1?dev",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1?dev&deps=react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?dev&deps=react@18.3.1",
+    "clsx": "https://esm.sh/clsx@2.1.1?dev",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.8?dev&deps=react@18.3.1,react-dom@18.3.1",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.2.1?dev",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?dev&deps=react@18.3.1",
+    "class-variance-authority": "https://esm.sh/class-variance-authority@0.7.0",
+    "@radix-ui/react-slot": "https://esm.sh/@radix-ui/react-slot@1.0.2?dev&deps=react@18.3.1,react-dom@18.3.1",
+    "@radix-ui/react-checkbox": "https://esm.sh/@radix-ui/react-checkbox@1.0.4?dev&deps=react@18.3.1,react-dom@18.3.1",
+    "@radix-ui/react-label": "https://esm.sh/@radix-ui/react-label@2.0.2?dev&deps=react@18.3.1,react-dom@18.3.1",
+    "@radix-ui/react-select": "https://esm.sh/@radix-ui/react-select@2.0.0?dev&deps=react@18.3.1,react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
