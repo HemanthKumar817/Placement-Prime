@@ -64,7 +64,7 @@ const SignInPageDemo: React.FC<SignInPageDemoProps> = ({ onSignUpClick, onSignIn
   return (
     <div className="bg-background text-foreground w-full">
       <SignInPage
-        heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
+        heroImageSrc="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop"
         testimonials={sampleTestimonials}
         onSignIn={handleSignIn}
         onGoogleSignIn={handleGoogleSignIn}
