@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-
-// --- HELPER COMPONENTS (ICONS) ---
+import { motion } from 'framer-motion';
 
 const GoogleIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 48 48">
@@ -11,9 +10,6 @@ const GoogleIcon = () => (
         <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C42.022 35.026 44 30.038 44 24c0-2.641-.21-5.236-.611-7.743z" />
     </svg>
 );
-
-
-// --- TYPE DEFINITIONS ---
 
 export interface Testimonial {
   avatarSrc: string;
@@ -33,8 +29,6 @@ interface SignInPageProps {
   onCreateAccount?: () => void;
 }
 
-// --- SUB-COMPONENTS ---
-
 const GlassInputWrapper = ({ children }: { children?: React.ReactNode }) => (
   <div className="rounded-2xl border border-border bg-foreground/5 backdrop-blur-sm transition-colors focus-within:border-violet-400/70 focus-within:bg-violet-500/10">
     {children}
@@ -52,8 +46,6 @@ const TestimonialCard = ({ testimonial, delay }: { testimonial: Testimonial, del
   </div>
 );
 
-// --- MAIN COMPONENT ---
-
 export const SignInPage: React.FC<SignInPageProps> = ({
   title = <span className="font-light text-foreground tracking-tighter">Welcome</span>,
   description = "Access your account and continue your journey with us",
@@ -68,7 +60,6 @@ export const SignInPage: React.FC<SignInPageProps> = ({
 
   return (
     <div className="h-[100dvh] flex flex-col md:flex-row font-sans w-[100dvw]">
-      {/* Left column: sign-in form */}
       <section className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           <div className="flex flex-col gap-6">
@@ -79,7 +70,15 @@ export const SignInPage: React.FC<SignInPageProps> = ({
               <div className="animate-element animate-delay-300">
                 <label className="text-sm font-medium text-muted-foreground">Email Address</label>
                 <GlassInputWrapper>
-                  <input name="email" type="email" required placeholder="Enter your email address" className="w-full bg-transparent text-sm p-4 rounded-2xl focus:outline-none text-foreground" />
+                  <motion.input 
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    name="email" 
+                    type="email" 
+                    required 
+                    placeholder="Enter your email address" 
+                    className="w-full bg-transparent text-sm p-4 rounded-2xl focus:outline-none text-foreground" 
+                  />
                 </GlassInputWrapper>
               </div>
 
@@ -87,9 +86,17 @@ export const SignInPage: React.FC<SignInPageProps> = ({
                 <label className="text-sm font-medium text-muted-foreground">Password</label>
                 <GlassInputWrapper>
                   <div className="relative">
-                    <input name="password" type={showPassword ? 'text' : 'password'} required placeholder="Enter your password" className="w-full bg-transparent text-sm p-4 pr-12 rounded-2xl focus:outline-none text-foreground" />
+                    <motion.input 
+                      whileFocus={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      name="password" 
+                      type={showPassword ? 'text' : 'password'} 
+                      required 
+                      placeholder="Enter your password" 
+                      className="w-full bg-transparent text-sm p-4 pr-12 rounded-2xl focus:outline-none text-foreground" 
+                    />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-3 flex items-center">
-                      {showPassword ? <EyeOff className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" /> : <Eye className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />}
+                      {showPassword ? <EyeOff className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" /> : <Eye className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />}
                     </button>
                   </div>
                 </GlassInputWrapper>
@@ -125,7 +132,6 @@ export const SignInPage: React.FC<SignInPageProps> = ({
         </div>
       </section>
 
-      {/* Right column: hero image + testimonials */}
       {heroImageSrc && (
         <section className="hidden md:block flex-1 relative p-4">
           <div className="animate-slide-right animate-delay-300 absolute inset-4 rounded-3xl bg-cover bg-center" style={{ backgroundImage: `url(${heroImageSrc})` }}></div>

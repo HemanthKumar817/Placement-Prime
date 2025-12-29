@@ -9,11 +9,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import * as SelectPrimitive from "@radix-ui/react-select";
+import { PasswordInput } from "./password-input";
+import { motion } from "framer-motion";
 import {
   BarChart,
   Code,
-  Eye,
-  EyeOff,
   User,
   CheckIcon,
   ChevronDownIcon,
@@ -152,10 +152,12 @@ const Input = React.forwardRef<
   React.InputHTMLAttributes<HTMLInputElement>
 >(({ className, type, ...props }, ref) => {
   return (
-    <input
+    <motion.input
+      whileFocus={{ scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       type={type}
       className={cn(
-        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
         className
       )}
       ref={ref}
@@ -251,7 +253,6 @@ const SelectItem = React.forwardRef<
         <CheckIcon className="h-4 w-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
-    {/* Correctly wrap children in ItemText so SelectValue displays text */}
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ));
@@ -280,19 +281,14 @@ const Logo = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function SignupForm({ onSignInClick }: { onSignInClick?: () => void }) {
-  const [showPassword, setShowPassword] = useState(false);
-
   const handleCreateAccount = (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate form logic here (omitted for brevity)
-    
-    // Automatically navigate to sign in after creation
     onSignInClick?.();
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen py-10">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700">
         <form onSubmit={handleCreateAccount}>
           <Card className="border-none shadow-lg pb-0">
             <CardHeader className="flex flex-col items-center space-y-1.5 pb-4 pt-6">
@@ -378,30 +374,9 @@ export default function SignupForm({ onSignInClick }: { onSignInClick?: () => vo
 
               <div className="space-y-2">
                 <Label htmlFor="password">Password <span className="text-destructive">*</span></Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    className="pr-10"
-                    required
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-0 top-0 h-full px-3 text-muted-foreground hover:bg-transparent"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
+                <PasswordInput id="password" name="password" required />
               </div>
 
-              {/* New Fields */}
               <div className="space-y-2">
                 <Label htmlFor="github" className="flex items-center gap-2">
                   <Github size={14} /> GitHub Profile <span className="text-destructive">*</span>

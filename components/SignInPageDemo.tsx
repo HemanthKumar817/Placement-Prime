@@ -50,11 +50,16 @@ const MOCK_ACCOUNTS: GoogleAccount[] = [
 interface SignInPageDemoProps {
   onSignUpClick?: () => void;
   onSignInSuccess?: () => void;
+  onForgotPasswordClick?: () => void;
 }
 
 type GoogleFlowStatus = 'idle' | 'loading' | 'picking' | 'verifying';
 
-const SignInPageDemo: React.FC<SignInPageDemoProps> = ({ onSignUpClick, onSignInSuccess }) => {
+const SignInPageDemo: React.FC<SignInPageDemoProps> = ({ 
+  onSignUpClick, 
+  onSignInSuccess, 
+  onForgotPasswordClick 
+}) => {
   const [flowStatus, setFlowStatus] = useState<GoogleFlowStatus>('idle');
   const [selectedAccount, setSelectedAccount] = useState<GoogleAccount | null>(null);
 
@@ -88,10 +93,6 @@ const SignInPageDemo: React.FC<SignInPageDemoProps> = ({ onSignUpClick, onSignIn
     }, 1500);
   };
 
-  const handleResetPassword = () => {
-    alert("Reset Password clicked");
-  }
-
   return (
     <div className="bg-background text-foreground w-full relative">
       {/* Main Sign In Page */}
@@ -100,7 +101,7 @@ const SignInPageDemo: React.FC<SignInPageDemoProps> = ({ onSignUpClick, onSignIn
         testimonials={sampleTestimonials}
         onSignIn={handleSignIn}
         onGoogleSignIn={handleGoogleSignIn}
-        onResetPassword={handleResetPassword}
+        onResetPassword={onForgotPasswordClick}
         onCreateAccount={onSignUpClick}
       />
 
