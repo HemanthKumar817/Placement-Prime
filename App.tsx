@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import SignInPageDemo from './components/SignInPageDemo';
 import SignupForm from './components/ui/registration';
-import { TuringLanding } from './components/ui/hero-landing-page';
+import { HeroGeometric } from './components/ui/shape-landing-hero';
 import { NotFoundPage } from './components/ui/404-page-not-found';
 
 const App: React.FC = () => {
@@ -18,7 +17,7 @@ const App: React.FC = () => {
 
   if (isSignedIn) {
     return (
-        <TuringLanding 
+        <HeroGeometric 
           onSignOut={() => setIsSignedIn(false)} 
           onStartPreparing={() => setShow404(true)}
         />
