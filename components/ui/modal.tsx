@@ -1,3 +1,4 @@
+
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { Button, ButtonProps } from "@/components/ui/button-1";
 import clsx from "clsx";
@@ -5,23 +6,32 @@ import { Drawer } from "@/components/ui/drawer";
 import { Material } from "@/components/ui/material-1";
 import useBreakpoints from "@/components/ui/use-breakpoints";
 
+// Fix: Made children optional to avoid "Property 'children' is missing" errors in some TypeScript environments when components are accessed via an object.
 interface ModalProps {
   active: boolean;
   onClickOutside: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   sticky?: boolean;
   initialFocusRef?: React.RefObject<HTMLButtonElement> | React.RefObject<null>;
 }
 
+// Fix: Made children optional to avoid "Property 'children' is missing" errors.
 interface ModalBodyProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   sticky?: boolean;
   className?: string;
 }
 
+// Fix: Made children optional to avoid "Property 'children' is missing" errors.
 interface ModalHeaderProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   sticky?: boolean;
+  className?: string;
+}
+
+// Fix: Added ModalActionsProps to support className and optional children.
+interface ModalActionsProps {
+  children?: React.ReactNode;
   className?: string;
 }
 
@@ -126,24 +136,30 @@ const ModalBody = ({ children, sticky, className }: ModalBodyProps) => (
     )}
   </div>
 );
-const ModalHeader = ({ children, sticky }: ModalHeaderProps) => (
+
+const ModalHeader = ({ children, sticky, className }: ModalHeaderProps) => (
   <header className={clsx(
-    "mb-6 rounded-t-xl", sticky && "sticky top-0 bg-background-200 border-b border-gray-alpha-400 pt-5 px-6 -mx-6"
+    "mb-6 rounded-t-xl", sticky && "sticky top-0 bg-background-200 border-b border-gray-alpha-400 pt-5 px-6 -mx-6", className
   )}>
     {children}
   </header>
 );
-const ModalInset = ({ children }: { children: React.ReactNode }) => (
+
+const ModalInset = ({ children }: { children?: React.ReactNode }) => (
   <div className="-mx-6 p-6 border-b border-t border-accents-2 bg-accents-1">{children}</div>
 );
-const ModalTitle = ({ children }: { children: React.ReactNode }) => (
+
+const ModalTitle = ({ children }: { children?: React.ReactNode }) => (
   <h2 className="mb-6 text-2xl font-semibold tracking-[-0.029375rem]">{children}</h2>
 );
-const ModalSubtitle = ({ children }: { children: React.ReactNode }) => (
+
+const ModalSubtitle = ({ children }: { children?: React.ReactNode }) => (
   <p className="text-base">{children}</p>
 );
-const ModalActions = ({ children }: { children: React.ReactNode }) => (
-  <footer className="sticky bottom-0 p-4 flex justify-between shrink-0 bg-background-200 inset-0 border-t border-gray-alpha-400 rounded-b-xl">
+
+// Fix: Updated ModalActions to support className via ModalActionsProps to resolve property assignment error.
+const ModalActions = ({ children, className }: ModalActionsProps) => (
+  <footer className={clsx("sticky bottom-0 p-4 flex justify-between shrink-0 bg-background-200 inset-0 border-t border-gray-alpha-400 rounded-b-xl", className)}>
     {children}
   </footer>
 );
